@@ -1,4 +1,6 @@
 # student-registration
 Web Technology Project
-Deployment Link : https://student-registration-bjz3.onrender.com
+Deployment Link : 
+- https://diya1415.github.io/student-registration/
+- https://student-registration-bjz3.onrender.com
 
