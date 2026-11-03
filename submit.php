@@ -3,6 +3,9 @@
 
 header('Content-Type: application/json');
 
+// Cloud servers usually run on UTC, so set the timezone for the "Submitted on" time
+date_default_timezone_set('Asia/Kolkata');
+
 // Only accept POST requests (not someone just opening the URL)
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);

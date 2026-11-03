@@ -125,3 +125,43 @@ button.secondary:hover { background: var(--slate); color: #fff; }
   .panel { padding: 32px 24px; }
   .row { grid-template-columns: 1fr; gap: 0; }
 }
+
+/* ---------- Result buttons (Print + Register another) ---------- */
+.actions { display: flex; gap: 12px; margin-top: 26px; }
+.actions button { flex: 1; margin-top: 0; }
+
+/* Print-only parts are invisible on screen */
+.print-only { display: none; }
+
+/* ---------- PRINT LAYOUT (used by the Print button and Ctrl+P) ---------- */
+/* Paper: A4 portrait with 18 mm margins. The user can still change this in the print dialog. */
+@page { size: A4 portrait; margin: 18mm; }
+
+@media print {
+  /* Plain white page, no screen decorations */
+  body { background: #fff; display: block; min-height: 0; padding: 0; color: #000; font-size: 12pt; }
+  .layout { display: block; box-shadow: none; border-radius: 0; max-width: 100%; background: #fff; }
+  .intro, .no-print, .screen-only, button { display: none !important; }
+  .panel { padding: 0; }
+  .print-only { display: block; }
+
+  /* Title block at the top of the printout */
+  .print-head { text-align: center; padding-bottom: 12px; margin-bottom: 26px; border-bottom: 2px solid var(--ink); }
+  .print-head h1 { font-family: 'Newsreader', Georgia, serif; font-size: 24pt; color: var(--ink); }
+  .print-head p { font-size: 11pt; color: #444; margin-top: 4px; }
+
+  /* Details table */
+  .result dl > div { padding: 12px 4px; border-bottom: 1px solid #999; }
+  .result dt { color: #333; font-size: 11pt; }
+  .result dd { color: #000; font-size: 12pt; }
+  .result dd#r-cgpa { color: #000; }
+
+  /* Signature lines at the bottom */
+  .print-foot { margin-top: 90px; }
+  .signs { display: flex; justify-content: space-between; gap: 40px; }
+  .signs div { flex: 1; border-top: 1px solid #000; padding-top: 6px; text-align: center; font-size: 10.5pt; }
+  .print-note { margin-top: 30px; font-size: 9.5pt; color: #444; text-align: right; }
+
+  /* Never split the table or signatures across two pages */
+  .result, .print-foot { break-inside: avoid; }
+}

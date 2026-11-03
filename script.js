@@ -77,6 +77,23 @@ $(document).ready(function () {
     });
   });
 
+  // ---- Print button: opens the browser print dialog (printer, Save as PDF, paper size, margins...) ----
+  $('#printBtn').on('click', function () {
+    window.print();
+  });
+
+  // Runs every time the print dialog opens (button OR Ctrl+P):
+  // fills in the print date and renames the page so "Save as PDF" suggests a good file name
+  var oldTitle = document.title;
+  window.addEventListener('beforeprint', function () {
+    $('#printedOn').text(new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }));
+    var name = $('#r-name').text();
+    if (name) { document.title = 'Registration - ' + name; }
+  });
+  window.addEventListener('afterprint', function () {
+    document.title = oldTitle;
+  });
+
   // ---- "Register another student" button: reset everything ----
   $('#newBtn').on('click', function () {
     $('#regForm')[0].reset();

@@ -74,8 +74,16 @@
 
       <!-- ===== RESULT CARD (hidden until success) ===== -->
       <div id="result" class="result hidden">
-        <h2>Registration complete</h2>
-        <p class="sub">Here are the details you submitted.</p>
+
+        <!-- Shown only on paper: form title at the top of the printout -->
+        <div class="print-only print-head">
+          <h1>Student Registration Form</h1>
+          <p>Engineering Students - Personal Details</p>
+        </div>
+
+        <!-- Shown only on screen -->
+        <h2 class="screen-only">Registration complete</h2>
+        <p class="sub screen-only">Here are the details you submitted.</p>
 
         <dl>
           <div><dt>Name</dt><dd id="r-name"></dd></div>
@@ -86,7 +94,20 @@
           <div><dt>Submitted on</dt><dd id="r-time"></dd></div>
         </dl>
 
-        <button type="button" id="newBtn" class="secondary">Register another student</button>
+        <!-- Shown only on paper: print date and signature lines -->
+        <div class="print-only print-foot">
+          <div class="signs">
+            <div>Student signature</div>
+            <div>Class coordinator signature</div>
+          </div>
+          <p class="print-note">Printed on: <span id="printedOn"></span></p>
+        </div>
+
+        <!-- Buttons (hidden when printing) -->
+        <div class="actions no-print">
+          <button type="button" id="printBtn">Print</button>
+          <button type="button" id="newBtn" class="secondary">Register another student</button>
+        </div>
       </div>
 
     </section>
